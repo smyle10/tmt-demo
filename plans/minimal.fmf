@@ -1,0 +1,2 @@
+execute:
+  script: echo hello world

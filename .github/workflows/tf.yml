@@ -1,0 +1,88 @@
+name: testing-farm flow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  submit-tf:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # - uses: actions/checkout@v4
+
+      - name: Schedule tests on Testing Farm
+        uses: sclorg/testing-farm-as-github-action@v3.1.2
+        with:
+          compose: RHEL-9.6.0-Nightly
+          api_key: ${{ secrets.TF_API_KEY }}
+          update_pull_request_status: true
+          tmt_context: "distro=RHEL-9.6;temp=yes"
+          pull_request_status_name: "tf-demo-rhel-9.6-x86"
+          tmt_plan_filter: "tag: tf"
+          # tmt_plan_regex: edge-x86
+          # tf_scope: private
+          # variables: "ARCH=x86_64;AWS_DEFAULT_REGION=us-east-1;GOVC_INSECURE=1"
+
+          # # A testing farm API key
+          # api_key: 
+          # # A testing farm server url
+          # api_url: # optional, default is https://api.dev.testing-farm.io/v0.1
+          # # Defines the scope of Testing Farm. Possible options are public and private
+          # tf_scope: # optional, default is public
+          # # An url to the GIT repository with TMT plans
+          # git_url: # optional, default is ${{ github.server_url }}/${{ github.repository }}
+          # # A tmt tests branch, tag or commit specifying the desired git revision which will be used for tests.
+          # git_ref: # optional, default is ${{ github.ref }}
+          # # A tmt plan regex which will be used for selecting plans. By default all plans are selected.
+          # tmt_plan_regex: # optional
+          # # A filter used to select tmt plans plan_filter. See https://docs.testing-farm.io/Testing%20Farm/0.1/test-request.html#plan-filter.
+          # tmt_plan_filter: # optional
+          # # A value of tmt.context variable https://tmt.readthedocs.io/en/latest/spec/context.html, variables separated by ;
+          # tmt_context: # optional, default is 
+          # # A path in the repository with tmt metadata
+          # tmt_path: # optional, default is .
+          # # A compose to run tests against.
+          # compose: # optional, default is Fedora-latest
+          # # Define an architecture for testing environment. Default: x86_64
+          # arch: # optional, default is x86_64
+          # # Environment variables for test, separated by ;
+          # variables: # optional, default is 
+          # # Secret environment variables for test env, separated by ;
+          # secrets: # optional, default is 
+          # # Define hardware requirements for the testing environment as a JSON string. See https://tmt.readthedocs.io/en/latest/spec/hardware.html
+          # tmt_hardware: # optional
+          # # Name of copr to use for the artifacts
+          # copr: # optional, default is epel-7-x86_64
+          # # "fedora-copr-build" artifacts for testing environment. Separated by ;
+          # copr_artifacts: # optional, default is 
+          # # GitHub TOKEN or PAT
+          # github_token: # optional, default is ${{ github.token }}
+          # # It creates a github issue Comment
+          # create_issue_comment: # optional, default is false
+          # # GitHub pull request status name
+          # pull_request_status_name: # optional, default is Fedora
+          # # Action will update pull request status. Default: true
+          # update_pull_request_status: # optional, default is false
+          # # Pass specific settings, like post-install-script, to the testing environment.
+          # environment_settings: # optional, default is {}
+          # # Pass specific settings for the testing farm pipeline, e.g. the type for multihost testing.
+          # pipeline_settings: # optional, default is {}
+          # # Create GitHub Job Summary accessible from Workflow run Summary.. Possible options: "true" or "false"
+          # create_github_summary: # optional, default is true
+          # # Action is waiting for testing farm to finish or until timeout is reached. Value is in minutes.
+          # timeout: # optional, default is 480
+          # # Owner of the repository
+          # repo_owner: # optional, default is ${{ github.repository_owner }}
+          # # Name of the repository
+          # repo_name: # optional
+          # # Pull request number for showing the results
+          # pr_number: # optional
+          # # Sha of the commit triggering the action
+          # commit_sha: # optional
+                  

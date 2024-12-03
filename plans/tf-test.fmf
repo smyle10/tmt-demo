@@ -1,0 +1,5 @@
+summary: a plan for testing-farm
+discover:
+  how: fmf
+
+tag: tf

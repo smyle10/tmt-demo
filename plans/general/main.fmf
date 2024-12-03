@@ -1,0 +1,32 @@
+summary: a demo plan
+description: |
+  This is a demo plan
+
+discover:
+  how: fmf
+
+provision:
+  how: container
+
+prepare:
+  - how: shell
+    script: |
+      echo ready
+  - how: install
+    package: git
+
+execute:
+  how: tmt
+
+report:
+  how: html
+
+adjust:
+- prepare+: # a "+" means extend the prepare step
+    - how: shell
+      script: |
+        echo adjusted
+  when: add_prepare == true # provide with `--context add_prepare=true`
+- provision: # override the provision step
+    how: minute
+  when: use_minute == yes, true, 1
