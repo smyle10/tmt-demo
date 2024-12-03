@@ -24,8 +24,8 @@ jobs:
           update_pull_request_status: true
           tmt_context: "distro=RHEL-9.6;temp=yes"
           pull_request_status_name: "tf-demo-rhel-9.6-x86"
-          tmt_plan_filter: "tag: tf"
-          # tmt_plan_regex: tf-test
+          # tmt_plan_filter: "tag: tf"
+          tmt_plan_regex: tf-test
           tf_scope: private
           # variables: "ARCH=x86_64;AWS_DEFAULT_REGION=us-east-1;GOVC_INSECURE=1"
 
