@@ -6,6 +6,7 @@ test: bash nmstatectl-show.sh
 require:
   - NetworkManager
   - jq
+  - nmstate
 duration: 3m 30s
 tier: 1
 tag:
