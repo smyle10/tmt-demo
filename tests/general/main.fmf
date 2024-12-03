@@ -1,0 +1,13 @@
+summary: check nmstatectl show
+description: |
+  Check that nmstatectl show returns the expected values.
+
+test: bash nmstatectl-show.sh
+require:
+  - NetworkManager
+  - jq
+duration: 3m 30s
+tier: 1
+tag:
+  - tag1
+  - tag2

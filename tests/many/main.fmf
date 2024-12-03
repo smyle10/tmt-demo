@@ -1,0 +1,12 @@
+duration: 10s
+test: bash ${TMT_TEST_NAME##*/}.sh
+
+/test-1:
+  adjust:
+    test: echo adjusted
+    when: adjust == true, 1, yes
+/test-2:
+  environment:
+    foo: bar
+/test-3:
+/test-4:
