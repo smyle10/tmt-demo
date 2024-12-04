@@ -2,4 +2,4 @@
 
 nmstatectl show --json
 nmstatectl show
-
+echo ok
