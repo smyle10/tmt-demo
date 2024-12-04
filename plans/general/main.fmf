@@ -1,9 +1,14 @@
 summary: a demo plan
 description: |
   This is a demo plan
+contact: redhater@redhat.com
 
 discover:
   how: fmf
+  test:
+  - /tests/general
+  - /tests/mini
+  # url: git_url  # <--- tmt downloads the repo, discover the .fmf tests there
 
 provision:
   how: container
@@ -11,7 +16,8 @@ provision:
 prepare:
   - how: shell
     script: |
-      echo ready
+      echo start
+      echo finish
   - how: install
     package: git
 
