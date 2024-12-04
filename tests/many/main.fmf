@@ -11,3 +11,4 @@ test: bash ${TMT_TEST_NAME##*/}.sh
 /test-3:
 /test-4:
   # framework: beakerlib
+  description: update in pr4
