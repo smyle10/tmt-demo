@@ -10,3 +10,4 @@ test: bash ${TMT_TEST_NAME##*/}.sh
     foo: bar
 /test-3:
 /test-4:
+  # framework: beakerlib
